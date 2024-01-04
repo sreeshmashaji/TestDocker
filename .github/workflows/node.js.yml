@@ -39,5 +39,6 @@ jobs:
         TARGET: ${{ secrets.TARGET_DIR }}
     - run : pm2 --version
     - run : pm2 start index.js --watch -i max
+    - run : pm2 list
     
     
