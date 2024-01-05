@@ -57,6 +57,6 @@ jobs:
              push: true
              tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
     - name: Pull
-      run: ssh ${{ secrets.DOCKERHUB_USERNAME }}@${{ secrets.HOST_DNS }} "cd ${{ secrets.TARGET_DIR }} && docker compose and pull && docker compose up -d && exit"
+      run:  sudo ssh ${{ secrets.DOCKERHUB_USERNAME }}@${{ secrets.HOST_DNS }} "cd ${{ secrets.TARGET_DIR }} && docker compose and pull && docker compose up -d && exit"
     
     
