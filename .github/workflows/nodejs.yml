@@ -17,9 +17,7 @@ jobs:
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: ${{ secrets.TARGET_DIR }}
         run: |
-          chmod +x deploy.sh
-          ./deploy.sh
-        #   sudo docker pull hello-world
-        #   sudo docker run hello-world
-        #   echo "SCRIPT ENDING"
+          sudo docker pull hello-world
+          sudo docker run hello-world
+          echo "SCRIPT ENDING"
        
