@@ -21,3 +21,5 @@ jobs:
           sudo docker pull hello-world
           sudo docker run hello-world
           echo "SCRIPT ENDING"
+    - name: Pull Image
+      run:  sudo docker pull hello-world
