@@ -18,8 +18,8 @@ jobs:
         TARGET: ${{ secrets.TARGET_DIR }}
         run: |
           echo "SCRIPT STARTING😶‍🌫️😊"
-          sudo docker pull hello-world
-          sudo docker run hello-world
-          echo "SCRIPT ENDING"
-    - name: Pull Image
-      run:  sudo docker pull hello-world
+          ./deploy.sh
+        #   sudo docker pull hello-world
+        #   sudo docker run hello-world
+        #   echo "SCRIPT ENDING"
+       
