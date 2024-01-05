@@ -17,5 +17,7 @@ jobs:
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: ${{ secrets.TARGET_DIR }}
         script: |
+          echo "SCRIPT STARTING😶‍🌫️😊"
           sudo docker pull hello-world
           sudo docker run hello-world
+          echo "SCRIPT ENDING"
