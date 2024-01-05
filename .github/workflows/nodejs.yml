@@ -1,29 +1,22 @@
-name: Docker Hello World
+name: SSH into EC2
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Your Workflow Name"]
+    types:
+      - completed
 jobs:
-  deploy:
+  ssh:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
+    - name: Checkout Repository
       uses: actions/checkout@v2
-    
-        
-    - name: SSH into EC2 and run Docker commands
-      uses: easingthemes/ssh-deploy@main 
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.0
       with:
-        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-        REMOTE_HOST: ${{ secrets.HOST_DNS }}
-        REMOTE_USER: ${{ secrets.USERNAME }}
-        TARGET: ${{ secrets.TARGET_DIR }}
-        script: |
-         chmod +x deploy.sh
-         ./deploy.sh
-    - name: DOCKER CONTAINER
+        ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+    - name: SSH into EC2
       run: |
-            chmod +x deploy.sh
-            ./deploy.sh   
-        
-       
+            ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_KEY }} ec2-user@${{ secrets.HOST_DNS}} << 'EOF'
+            docker pull hello-world
+            docker run -d --name hello-world-container hello-world
+            EOF
