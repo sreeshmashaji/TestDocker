@@ -12,7 +12,8 @@ jobs:
     
     - name: DOCKER CONTAINER
       run: |
-           ./deploy.sh      
+           chmod +x deploy.sh
+           ./deploy.sh    
     - name: SSH into EC2 and run Docker commands
       uses: easingthemes/ssh-deploy@main 
       with:
