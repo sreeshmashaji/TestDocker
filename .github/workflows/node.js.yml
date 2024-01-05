@@ -57,9 +57,10 @@ jobs:
              push: true
              tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
     - name: Install shh key
-      run: install -m 600 -D /dev/null ~/.ssh/id_rsa
-           echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
-           ssh-keyscan -H ${{ secrets.HOST_DNS }} > ~/.ssh/known_hosts
+      run: |
+         install -m 600 -D /dev/null ~/.ssh/id_rsa
+         echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+         ssh-keyscan -H ${{ secrets.HOST_DNS }} > ~/.ssh/known_hosts
     - name: Pull
       run:  sudo ssh ${{ secrets.DOCKERHUB_USERNAME }}@${{ secrets.HOST_DNS }} "cd ${{ secrets.TARGET_DIR }} && docker compose and pull && docker compose up -d && exit"
     
