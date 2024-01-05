@@ -57,7 +57,7 @@ jobs:
              push: true
              tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
     - name: Install shh key
-      run: install -m 600 D /dev/null ~/.ssh/id_rsa
+      run: install -m 600 -D /dev/null ~/.ssh/id_rsa
            echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
            ssh-keyscan -H ${{ secrets.HOST_DNS }} > ~/.ssh/known_hosts
     - name: Pull
