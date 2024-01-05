@@ -16,7 +16,7 @@ jobs:
         ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
     - name: SSH into EC2
       run: |
-            ssh  -i ${{ secrets.EC2_SSH_KEY }} ec2-user@${{ secrets.HOST_DNS}} << 'EOF'
+            ssh  -i ${{ secrets.EC2_SSH_KEY }} ubuntu@${{ secrets.HOST_DNS}} << 'EOF'
             docker pull hello-world
             docker run -d --name hello-world-container hello-world
             EOF
