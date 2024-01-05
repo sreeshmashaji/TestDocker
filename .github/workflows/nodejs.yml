@@ -16,8 +16,8 @@ jobs:
         REMOTE_HOST: ${{ secrets.HOST_DNS }}
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: ${{ secrets.TARGET_DIR }}
-        script: |
-          echo "SCRIPT STARTING😶‍🌫️😊"
+        run: |
+          chmod +x deploy.sh
           ./deploy.sh
         #   sudo docker pull hello-world
         #   sudo docker run hello-world
