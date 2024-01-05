@@ -1,0 +1,21 @@
+name: Docker Hello World
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: SSH into EC2 and run Docker commands
+      uses: appleboy/ssh-action@v0.4.0
+      with:
+        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+        REMOTE_HOST: ${{ secrets.HOST_DNS }}
+        REMOTE_USER: ${{ secrets.USERNAME }}
+        TARGET: ${{ secrets.TARGET_DIR }}
+        script: |
+          sudo docker pull hello-world
+          sudo docker run hello-world
