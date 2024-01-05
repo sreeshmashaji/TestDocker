@@ -58,7 +58,8 @@ jobs:
              tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
     
     
-    
+    - name: Starting Docker
+      uses: actions/checkout@v3
     - name: Create Runner
       uses: docker/setup-action@v3
      
