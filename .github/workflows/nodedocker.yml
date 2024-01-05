@@ -1,9 +1,9 @@
 name: SSH into EC2
 on:
-  workflow_run:
-    workflows: ["Your Workflow Name"]
-    types:
-      - completed
+    push:
+      branches: [ "main" ]
+    pull_request:
+      branches: [ "main" ]
 jobs:
   ssh:
     runs-on: ubuntu-latest
