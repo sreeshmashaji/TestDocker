@@ -12,9 +12,9 @@ jobs:
     - name: SSH into EC2 and run Docker commands
       uses: easingthemes/ssh-deploy@main
       with:
-        remoteHost: ${{ secrets.HOST_DNS }}
-        remoteUser: ${{ secrets.USERNAME }}
-        sshPrivateKey: ${{ secrets.EC2_SSH_KEY }}
+        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+        REMOTE_HOST: ${{ secrets.HOST_DNS }}
+        REMOTE_USER: ${{ secrets.USERNAME }}
         script: |
           sudo docker pull hello-world
           sudo docker run hello-world
