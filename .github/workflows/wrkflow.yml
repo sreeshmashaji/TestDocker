@@ -66,6 +66,7 @@ jobs:
         host: ${{ secrets.HOST_DNS }}
         username: ${{ secrets.USERNAME }}
         script: chmod +x ./deploy.sh
+               ./deploy.sh
         # scripts: |
         #      sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
         #      sudo docker stop backend_server||true
