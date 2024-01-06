@@ -65,7 +65,7 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         host: ${{ secrets.HOST_DNS }}
         username: ${{ secrets.USERNAME }}
-        script: ./deploy.sh
+        script: chmod +x ./deploy.sh
     # - name: DOCKER PULL AND RUN
     #   uses: appleboy/ssh-action@master
     #   with:
