@@ -66,6 +66,7 @@ jobs:
         REMOTE_HOST: ${{ secrets.HOST_DNS }}
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: ${{ secrets.TARGET_DIR }}
+        SCRIPT: ./deploy.sh
     # - name: DOCKER PULL AND RUN
     #   uses: appleboy/ssh-action@master
     #   with:
