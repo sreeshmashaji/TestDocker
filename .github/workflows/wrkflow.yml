@@ -49,15 +49,15 @@ jobs:
              tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
     
     
-    - name: Starting Docker
-      uses: actions/checkout@v3
+    # - name: Starting Docker
+    #   uses: actions/checkout@v3
     
      
-    - name: Pull Image
-      run: sudo docker pull -a ${{ secrets.DOCKERHUB_USERNAME }}/clockbox
+    # - name: Pull Image
+    #   run: sudo docker pull -a ${{ secrets.DOCKERHUB_USERNAME }}/clockbox
      
-    - name: Deploy Image
-      run: sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+    # - name: Deploy Image
+    #   run: sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
     
     - name: Deploy to Server 1
       uses: easingthemes/ssh-deploy@main
