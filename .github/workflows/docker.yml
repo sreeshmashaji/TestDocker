@@ -27,5 +27,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm start
+    - run: npm i -g ngrok
+    - name: Start Node.js app
+      run: |
+          npm start &
+          echo "Node.js app is running at http://localhost:8080" &
+          ngrok http 8080
     
