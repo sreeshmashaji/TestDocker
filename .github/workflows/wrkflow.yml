@@ -74,8 +74,8 @@ jobs:
         scripts: |
          sudo docker login
          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
-         sudo docker stop backend_server
-         sudo docker rm backend_server
-         sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+         sudo docker stop backend_server||true
+         sudo docker rm backend_server||true
+         sudo docker run -d -p 8080:80 --name backend_server ${{secrets.HOST_DNS }}/clockbox:latest
 
    
