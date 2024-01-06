@@ -1,3 +1,6 @@
 echo "running sh file😊"
-sudo docker pull hello-world
-sudo docker run hello-world
+ - name: Pull Image
+      run: sudo docker pull -a ${{ secrets.DOCKERHUB_USERNAME }}/clockbox
+     
+    - name: Deploy Image
+      run: sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
