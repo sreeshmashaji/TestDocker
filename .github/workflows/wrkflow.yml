@@ -49,15 +49,15 @@ jobs:
              tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
     
     
-    - name: Starting Docker
-      uses: actions/checkout@v3
+    # - name: Starting Docker
+    #   uses: actions/checkout@v3
     
      
-    - name: Pull Image
-      run: sudo docker pull -a ${{ secrets.DOCKERHUB_USERNAME }}/clockbox
+    # - name: Pull Image
+    #   run: sudo docker pull -a ${{ secrets.DOCKERHUB_USERNAME }}/clockbox
      
-    - name: Deploy Image
-      run: sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+    # - name: Deploy Image
+    #   run: sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
     - name: Deploy to Server 1
       uses: easingthemes/ssh-deploy@main
       with:
@@ -65,4 +65,17 @@ jobs:
         REMOTE_HOST: ${{ secrets.HOST_DNS }}
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: ${{ secrets.TARGET_DIR }}
+    - name: DOCKER PULL AND RUN
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST_DNS }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        scripts: |
+         sudo docker login
+         sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+         sudo docker stop backend_server
+         sudo docker rm backend_server
+         sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+
    
