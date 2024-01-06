@@ -32,7 +32,8 @@ jobs:
     - name: Start Node.js app
       run: |
           ngrok config add-authtoken 2aZRf0gGgng8CaYk7vEwj1kH3YA_2mrcRKiiasUQAxgYuWCgt &
+          ngrok http 8080 &
           npm start &
-          echo "Node.js app is running at http://localhost:8080" &
-          ngrok http 8080
+          echo "Node.js app is running at http://localhost:8080" 
+          
     
