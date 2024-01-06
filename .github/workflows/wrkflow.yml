@@ -49,8 +49,8 @@ jobs:
              tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
     
     
-    # - name: Starting Docker
-    #   uses: actions/checkout@v3
+    - name: Starting Docker
+      uses: actions/checkout@v3
     
      
     # - name: Pull Image
@@ -58,24 +58,45 @@ jobs:
      
     # - name: Deploy Image
     #   run: sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
-    - name: Set SSH key permissions
-      run: chmod 600 ${{ secrets.EC2_SSH_KEY }}
-    - name: Deploy to Server 1
-      uses: appleboy/ssh-action@master
-      with:
-        key: ${{ secrets.EC2_SSH_KEY }}
-        host: ${{ secrets.HOST_DNS }}
-        username: ${{ secrets.USERNAME }}
-        scripts: |
-                  chmod +x ./deploy.sh
-                  ./deploy.sh
-        # scripts: |
-        #      sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
-        #      sudo docker stop backend_server||true
-        #      sudo docker rm backend_server||true
-        #      sudo docker run -d -p 8080:80 --name backend_server ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
     
-         
+    - name: Deploy to Server 1
+      uses: easingthemes/ssh-deploy@main
+      with:
+        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+        REMOTE_HOST: ${{ secrets.HOST_DNS }}
+        REMOTE_USER: ${{ secrets.USERNAME }}
+        TARGET: ${{ secrets.TARGET_DIR }}
+        SCRIPT: ./deploy.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # - name: DOCKER PULL AND RUN
+    #   uses: appleboy/ssh-action@master
+    #   with:
+    #     host: ${{ secrets.HOST_DNS }}
+    #     username: ${{ secrets.USERNAME }}
+    #     key: ${{ secrets.EC2_SSH_KEY }}
+    #     scripts: |
+    #      sudo docker login
+    #      sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+    #      sudo docker stop backend_server||true
+    #      sudo docker rm backend_server||true
+    #      sudo docker run -d -p 8080:80 --name backend_server ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
          
     
 
