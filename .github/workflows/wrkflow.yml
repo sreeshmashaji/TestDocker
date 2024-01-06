@@ -58,7 +58,8 @@ jobs:
      
     # - name: Deploy Image
     #   run: sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
-    
+    - name: Set SSH key permissions
+      run: chmod 600 ${{ secrets.EC2_SSH_KEY }}
     - name: Deploy to Server 1
       uses: appleboy/ssh-action@master
       with:
