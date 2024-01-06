@@ -61,9 +61,9 @@ jobs:
     - name: DOCKER PULL AND RUN
       uses: actions/checkout@v3
       with:
-        host: ${{ secrets.HOST_DNS }}
+        ssh-known-hosts: ${{ secrets.HOST_DNS }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.EC2_SSH_KEY }}
+        ssh-key: ${{ secrets.EC2_SSH_KEY }}
         scripts: |
          sudo docker login
          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
