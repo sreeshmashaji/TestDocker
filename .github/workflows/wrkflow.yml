@@ -58,6 +58,14 @@ jobs:
      
     # - name: Deploy Image
     #   run: sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+    
+    - name: Deploy to Server 1
+      uses: easingthemes/ssh-deploy@main
+      with:
+        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+        REMOTE_HOST: ${{ secrets.HOST_DNS }}
+        REMOTE_USER: ${{ secrets.USERNAME }}
+        TARGET: ${{ secrets.TARGET_DIR }}
     - name: DOCKER PULL AND RUN
       uses: appleboy/ssh-action@master
       with:
@@ -71,13 +79,6 @@ jobs:
          sudo docker rm backend_server||true
          sudo docker run -d -p 8080:80 --name backend_server ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
          
-    - name: Deploy to Server 1
-      uses: easingthemes/ssh-deploy@main
-      with:
-        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-        REMOTE_HOST: ${{ secrets.HOST_DNS }}
-        REMOTE_USER: ${{ secrets.USERNAME }}
-        TARGET: ${{ secrets.TARGET_DIR }}
     
 
    
