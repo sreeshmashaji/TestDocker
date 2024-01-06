@@ -59,18 +59,18 @@ jobs:
     # - name: Deploy Image
     #   run: sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
     - name: DOCKER PULL AND RUN
-      uses: actions/checkout@v3
+      uses: appleboy/ssh-action@master
       with:
-        ssh-known-hosts: ${{ secrets.HOST_DNS }}
+        host: ${{ secrets.HOST_DNS }}
         username: ${{ secrets.USERNAME }}
-        ssh-key: ${{ secrets.EC2_SSH_KEY }}
+        key: ${{ secrets.EC2_SSH_KEY }}
         scripts: |
          sudo docker login
          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
          sudo docker stop backend_server||true
          sudo docker rm backend_server||true
          sudo docker run -d -p 8080:80 --name backend_server ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
-
+         
     - name: Deploy to Server 1
       uses: easingthemes/ssh-deploy@main
       with:
