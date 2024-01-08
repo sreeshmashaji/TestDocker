@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Customize these variables for your environment
-IMAGE_NAME="my-docker-image"
+IMAGE_NAME="clockbox
 IMAGE_TAG="latest"  # Or specify a specific tag
-CONTAINER_NAME="my-container"
+CONTAINER_NAME="clock_container"
 PORTS="-p 8080:80"  # Adjust as needed for port mappings
 
 # Pull the latest image if it's not already available
