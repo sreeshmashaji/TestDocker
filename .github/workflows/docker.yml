@@ -56,7 +56,7 @@ jobs:
          sudo docker stop clock || true
          sudo docker rm clock || true
          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:${{github.sha}}
-         sudo docker run -d --name clock -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:${{github.sha}}
+         sudo docker run -d --name clock -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:${{github.sha}}
 
 
 
