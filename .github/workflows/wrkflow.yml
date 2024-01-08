@@ -58,6 +58,15 @@ jobs:
      
     # - name: Deploy Image
     #   run: sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+    - name: Create dockerpull.sh on EC2
+      run: |
+          echo "${{ secrets.DEPLOY_SCRIPT_CONTENTS }}" > dockerpull.sh
+          chmod +x dockerpull.sh
+
+    - name: Run deploy.sh on EC2
+      run: |
+          ./dockerpull.sh
+    
     
     - name: Deploy to Server 1
       uses: easingthemes/ssh-deploy@main
@@ -66,7 +75,7 @@ jobs:
         REMOTE_HOST: ${{ secrets.HOST_DNS }}
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: ${{ secrets.TARGET_DIR }}
-        run: sh ./deploy.sh
+        
 
 
 
