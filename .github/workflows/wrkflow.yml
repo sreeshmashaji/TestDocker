@@ -73,10 +73,11 @@ jobs:
         REMOTE_HOST: ${{ secrets.HOST_DNS }}
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: ${{ secrets.TARGET_DIR }}
-        run: |
-             chmod +x dockerpull.sh
-             ./dockerpull.sh
+    
+    - run: chmod +x dockerpull.sh
 
+    
+    - run: ./dockerpull.sh
 
 
 
