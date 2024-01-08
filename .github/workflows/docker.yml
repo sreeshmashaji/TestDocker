@@ -27,16 +27,15 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm i -g ngrok
-           
-    - name: Start ngrock Token
-      run: |
-          ngrok config add-authtoken 2aZRf0gGgng8CaYk7vEwj1kH3YA_2mrcRKiiasUQAxgYuWCgt &
-          ngrok http 8080 
- 
-    - name: Start ngrock Token
-      run: |
-          npm start &
-          echo "Node.js app is running at http://localhost:8080" 
+    - name: PM2 INSTALL
+      run: npm i pm2@latest -g
+    - name: Deploy to Server 1
+      uses: easingthemes/ssh-deploy@main
+      with:
+        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+        REMOTE_HOST: ${{ secrets.HOST_DNS }}
+        REMOTE_USER: ${{ secrets.USERNAME }}
+        TARGET: ${{ secrets.TARGET_DIR }}
+   
           
     
