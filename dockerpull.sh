@@ -15,5 +15,5 @@ sudo docker pull "$IMAGE_NAME:$IMAGE_TAG"
 sudo docker rm -f "$CONTAINER_NAME" 2> /dev/null || true
 
 # Run the container, exposing ports (but without volumes)
-sudo docker run -d --name "$CONTAINER_NAME" "$IMAGE_NAME:$IMAGE_TAG" $PORTS
+sudo docker run -dp 8080:8080 --name "$CONTAINER_NAME" "$IMAGE_NAME:$IMAGE_TAG" 
 
