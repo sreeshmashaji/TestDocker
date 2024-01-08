@@ -1,0 +1,26 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Decrypt private key
+      run: |
+        echo "${{ secrets.EC2_SSH_KEY }}" | base64 --decode > ~/.ssh/private-key.pem
+        chmod 600 ~/.ssh/private-key.pem
+
+    - name: Create and run deploy.sh on EC2
+      run: |
+        scp -i ~/.ssh/private-key.pem dockerpull.sh ubuntu@your-ec2-instance-ip:/path/to/destination
+        ssh -i ~/.ssh/private-key.pem ubuntu@your-ec2-instance-ip "chmod +x /path/to/destination/dockerpull.sh && /path/to/destination/dockerpull.sh"
+      env:
+        HOST: ${{ secrets.EC2_INSTANCE_IP }}
