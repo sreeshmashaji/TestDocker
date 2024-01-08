@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "😊"
 # Pull the latest Docker image from GitHub Container Registry
 sudo docker pull -a ${{ secrets.DOCKERHUB_USERNAME }}/clockbox
     
