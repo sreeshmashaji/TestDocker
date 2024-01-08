@@ -5,7 +5,7 @@ name: Node.js CI
 
 on: 
   push:
-    
+
   
   # pull_request:
   #   types: [closed]
@@ -38,12 +38,12 @@ jobs:
            password: ${{ secrets.DOCKERHUB_TOKEN }}
 
 
-    - name: build and push docker image
-      uses: docker/build-push-action@v2
-      with:
-        context:
-        push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:${{github.sha}}
+    # - name: build and push docker image
+    #   uses: docker/build-push-action@v2
+    #   with:
+    #     context:
+    #     push: true
+    #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:${{github.sha}}
 
 
     - name: Deploy to Server 1
@@ -57,8 +57,8 @@ jobs:
         script: |
          sudo docker stop clock || true
          sudo docker rm clock || true
-         sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:${{github.sha}}
-         sudo docker run -d --name clock -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:${{github.sha}}
+         sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/server:latest
+         sudo docker run -d --name clock -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
 
 
 
