@@ -1,6 +1,6 @@
 
 
-# Pull the latest Docker image from GitHub Container Registry
+# Pull the latest Docker image from GitHub Container Registryjj
 sudo docker pull -a ${{ secrets.DOCKERHUB_USERNAME }}/clockbox
     
 
