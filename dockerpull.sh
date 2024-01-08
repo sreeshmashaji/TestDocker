@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Customize these variables for your environment
-IMAGE_NAME="clockbox
+IMAGE_NAME="clockbox"
 IMAGE_TAG="latest"  # Or specify a specific tag
 CONTAINER_NAME="clock_container"
-PORTS="-p 8080:80"  # Adjust as needed for port mappings
+  # Adjust as needed for port mappings
 # Pull the latest image if it's not already available
 
 echo "Pulling image $IMAGE_NAME:$IMAGE_TAG"
