@@ -59,9 +59,7 @@ jobs:
     # - name: Deploy Image
     #   run: sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
     - name: Create dockerpull.sh on EC2
-      run: |
-          echo "${{ secrets.DEPLOY_SCRIPT_CONTENTS }}" > dockerpull.sh
-          chmod +x dockerpull.sh
+      run: chmod +x dockerpull.sh
 
     - name: Run deploy.sh on EC2
       run: |
