@@ -4,9 +4,12 @@
 IMAGE_NAME="clockbox"
 IMAGE_TAG="latest"  # Or specify a specific tag
 CONTAINER_NAME="clock_container"
+DOCKER_USERNAME="sreeshma123"
+DOCKER_PASSWORD="Vishnu123#"
   # Adjust as needed for port mappings
 # Pull the latest image if it's not already available
 
+docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 echo "Pulling image $IMAGE_NAME:$IMAGE_TAG"
 sudo docker pull "$IMAGE_NAME:$IMAGE_TAG"
 
