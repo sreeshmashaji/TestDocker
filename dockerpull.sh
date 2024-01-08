@@ -19,3 +19,4 @@ docker rm -f "$CONTAINER_NAME" 2> /dev/null || true
 docker run -d --name "$CONTAINER_NAME" "$IMAGE_NAME:$IMAGE_TAG" $PORTS
 
 echo "Container $CONTAINER_NAME started successfully!"
+EOF
