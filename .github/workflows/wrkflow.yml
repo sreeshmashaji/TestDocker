@@ -58,12 +58,12 @@ jobs:
      
     # - name: Deploy Image
     #   run: sudo docker run -dp 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
-    - name: Create dockerpull.sh on EC2
-      run: chmod +x dockerpull.sh
+    # - name: Create dockerpull.sh on EC2
+    #   run: chmod +x dockerpull.sh
 
-    - name: Run deploy.sh on EC2
-      run: |
-          ./dockerpull.sh
+    # - name: Run deploy.sh on EC2
+    #   run: |
+    #       ./dockerpull.sh
     
     
     - name: Deploy to Server 1
@@ -73,7 +73,9 @@ jobs:
         REMOTE_HOST: ${{ secrets.HOST_DNS }}
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: ${{ secrets.TARGET_DIR }}
-        
+        run: |
+             chmod +x dockerpull.sh
+             ./dockerpull.sh
 
 
 
