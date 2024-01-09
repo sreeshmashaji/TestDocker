@@ -29,8 +29,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - name: PM2 INSTALL
-      run: npm i pm2@latest -g
+    # - name: PM2 INSTALL
+    #   run: npm i pm2@latest -g
     - name: Login to Docker hub
       uses: docker/login-action@v3
       with:
